@@ -37,7 +37,6 @@ private:
     QStringList m_answerList;       //答案
 
 private slots:
-
     void freshTime();   //刷新考试时间
     void getScore();    //获取考试成绩
 };

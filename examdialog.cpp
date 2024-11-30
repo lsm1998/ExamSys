@@ -151,7 +151,7 @@ void ExamDialog::initButtons()
         }
     }
 
-    QPushButton *submitBtn = new QPushButton(this);
+    auto *submitBtn = new QPushButton(this);
     submitBtn->setText("提交");
     submitBtn->setFixedSize(100, 35);
     connect(submitBtn, SIGNAL(clicked(bool)), this, SLOT(getScore()));
@@ -198,7 +198,7 @@ void ExamDialog::getScore()
 {
     if (hasNoSelect())
     {
-        QMessageBox::information(this, "提示", "您有未完成的题目，请完成考试！", "是");
+        QMessageBox::critical(this, "提示", "您有未完成的题目，请完成考试！", QMessageBox::Ok);
         return;
     }
 
@@ -214,15 +214,10 @@ void ExamDialog::getScore()
         if (i == 8)
         {
             QString answer = m_answerList.at(i);
-            bool hasA = false;
-            bool hasB = false;
-            bool hasC = false;
-            bool hasD = false;
-
-            if (answer.contains("A")) hasA = true;
-            if (answer.contains("B")) hasB = true;
-            if (answer.contains("C")) hasC = true;
-            if (answer.contains("D")) hasD = true;
+            bool hasA = answer.contains("A");
+            bool hasB = answer.contains("B");
+            bool hasC = answer.contains("C");
+            bool hasD = answer.contains("D");
 
             bool checkA = m_checkBtns[0]->checkState();
             bool checkB = m_checkBtns[1]->checkState();
